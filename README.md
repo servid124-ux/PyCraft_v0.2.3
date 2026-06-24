@@ -3,7 +3,7 @@
 # PyCraft
 **Minecraft Classic server — built from scratch in Python**
 
-![Version](https://img.shields.io/badge/version-0.2.5-blue)
+![Version](https://img.shields.io/badge/version-0.2.6-blue)
 ![Protocol](https://img.shields.io/badge/protocol-Classic%200x07-green)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Android%20Termux-orange)
 ![Python](https://img.shields.io/badge/python-3.10%2B-yellow)
@@ -15,7 +15,7 @@
 ## Features
 
 - Classic protocol 7 — compatible with ClassiCube
-- **CPE CustomBlocks** — 16 extra blocks (50–65) for CPE clients
+- **CPE CustomBlocks** — 16 extra blocks (IDs 50–65) for CPE clients
 - World generation — `normal` with caves, ores, water, trees / `flat`
 - Fluid physics — water and lava spread
 - External plugin system — hot-reloadable `.py` plugins
@@ -32,8 +32,8 @@
 
 ```bash
 pkg install python unzip
-wget https://github.com/user-attachments/files/29228849/PyCraft_v0.2.5.zip 
-unzip PyCraft_v0.2.5.zip -d PyCraft
+wget https://github.com/servid124-ux/PyCraft/releases/download/v0.2.6/PyCraft_v0.2.6.zip
+unzip PyCraft_v0.2.6.zip -d PyCraft
 cd PyCraft
 sh Start.sh
 ```
@@ -42,8 +42,8 @@ sh Start.sh
 
 ```bash
 sudo apt install python3 unzip wget
-wget https://github.com/user-attachments/files/29228849/PyCraft_v0.2.5.zip
-unzip PyCraft_v0.2.5.zip -d PyCraft
+wget https://github.com/servid124-ux/PyCraft/releases/download/v0.2.6/PyCraft_v0.2.6.zip
+unzip PyCraft_v0.2.6.zip -d PyCraft
 cd PyCraft
 sh Start.sh
 ```
@@ -97,21 +97,38 @@ To connect from another device on the same network, replace `localhost` with you
 Edit `server.properties` after the first launch.
 
 ```properties
-server-name=My PyCraft Server
-max-players=20
+server-name=A Minecraft Classic Server
+motd=Welcome!
 port=25565
-online-mode=false
+max-players=32
+public=false
+world-name=world
+world-size-x=128
+world-size-y=64
+world-size-z=128
 world-generator=normal
 cpe-blocks=true
 save-interval=300
+connection-timeout=30
+max-connections-per-ip=3
+max-violations-before-ban=5
 ```
 
 | Option | Values | Description |
 |---|---|---|
+| `server-name` | string | Name shown in the server list |
+| `motd` | string | Message shown on connect |
+| `port` | number | Port to listen on |
+| `max-players` | number | Maximum simultaneous players |
+| `public` | `true` / `false` | List server on classicube.net |
+| `world-name` | string | World save file name |
+| `world-size-x/y/z` | number | World dimensions in blocks |
 | `world-generator` | `normal` / `flat` | World type on first creation |
 | `cpe-blocks` | `true` / `false` | Enable CPE CustomBlocks extension |
-| `online-mode` | `true` / `false` | Verify players via classicube.net |
 | `save-interval` | seconds | Auto-save interval |
+| `connection-timeout` | seconds | Idle connection timeout |
+| `max-connections-per-ip` | number | Max simultaneous connections per IP |
+| `max-violations-before-ban` | number | Auto-ban threshold for rule violations |
 
 ---
 
@@ -142,8 +159,18 @@ Enables 16 additional blocks (IDs 50–65): Sandstone, Snow, Ice, Cactus, Magma,
 
 ---
 
+## Changelog
+
+### v0.2.6
+- Fixed `BufferUnderrun` crash on player movement — `PlayerTeleport (0x08)` body size corrected from 8 → 9 bytes
+
+### v0.2.5
+- Initial public release
+
+---
+
 <div align="center">
 
-Made with Python · Classic protocol 7 · [github.com/servid124-ux/PyCraft_v0.2.3](https://github.com/servid124-ux/PyCraft_v0.2.3)
+Made with Python · Classic protocol 7 · [github.com/servid124-ux/PyCraft](https://github.com/servid124-ux/PyCraft)
 
 </div>
