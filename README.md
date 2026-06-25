@@ -1,50 +1,46 @@
 <div align="center">
 
-# PyCraft
+```
+██████╗ ██╗   ██╗ ██████╗██████╗  █████╗ ███████╗████████╗
+██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝
+██████╔╝ ╚████╔╝██║     ██████╔╝███████║█████╗     ██║   
+██╔═══╝   ╚██╔╝  ██║     ██╔══██╗██╔══██║██╔══╝     ██║   
+██║        ██║   ╚██████╗██║  ██║██║  ██║██║        ██║   
+╚═╝        ╚═╝    ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝        ╚═╝   
+```
+
 **Minecraft Classic server — built from scratch in Python**
 
-![Version](https://img.shields.io/badge/version-0.2.6-blue)
-![Protocol](https://img.shields.io/badge/protocol-Classic%200x07-green)
-![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Android%20Termux-orange)
-![Python](https://img.shields.io/badge/python-3.10%2B-yellow)
+![Version](https://img.shields.io/badge/version-0.2.6-blue?style=flat-square)
+![Protocol](https://img.shields.io/badge/protocol-Classic%200x07-green?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Termux-orange?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square)
 
 </div>
 
 ---
 
-## Features
-
-- Classic protocol 7 — compatible with ClassiCube
-- **CPE CustomBlocks** — 16 extra blocks (IDs 50–65) for CPE clients
-- World generation — `normal` with caves, ores, water, trees / `flat`
-- Fluid physics — water and lava spread
-- External plugin system — hot-reloadable `.py` plugins
-- Private messages — `/msg` and `/r`
-- OP system with colored chat prefix
-- Auto-restart on crash
-- Runs on Android via Termux
+PyCraft is a Minecraft Classic server written entirely in Python, compatible with ClassiCube. It runs on Linux and Android via Termux with no external dependencies.
 
 ---
 
 ## Installation
 
-### Android (Termux)
+**Android (Termux)**
 
 ```bash
 pkg install python unzip
 wget https://github.com/user-attachments/files/29273640/PyCraft_v0.2.6.zip
-unzip PyCraft_v0.2.6.zip -d PyCraft
-cd PyCraft
+unzip PyCraft_v0.2.6.zip -d PyCraft && cd PyCraft
 sh Start.sh
 ```
 
-### Linux
+**Linux**
 
 ```bash
 sudo apt install python3 unzip wget
 wget https://github.com/user-attachments/files/29273640/PyCraft_v0.2.6.zip
-unzip PyCraft_v0.2.6.zip -d PyCraft
-cd PyCraft
+unzip PyCraft_v0.2.6.zip -d PyCraft && cd PyCraft
 sh Start.sh
 ```
 
@@ -52,49 +48,13 @@ sh Start.sh
 
 ## Connecting
 
-Open **ClassiCube** → Options → Servers → Direct connect
-
-```
-Host: localhost
-Port: 25565
-```
-
-To connect from another device on the same network, replace `localhost` with your local IP address.
-
----
-
-## Commands
-
-| Command | Description |
-|---|---|
-| `/help` | List all available commands |
-| `/players` | Show connected players |
-| `/spawn` | Teleport to world spawn |
-| `/pos` | Display your current coordinates |
-| `/me <text>` | Send an action message |
-| `/msg <player> <text>` | Send a private message |
-| `/r <text>` | Reply to last private message |
-| `/plugins` | List loaded plugins |
-
-**OP only**
-
-| Command | Description |
-|---|---|
-| `/tp <player>` | Teleport to a player |
-| `/kick <player>` | Kick a player |
-| `/ban <player>` | Ban a player |
-| `/unban <player>` | Unban a player |
-| `/op <player>` | Grant operator status |
-| `/deop <player>` | Revoke operator status |
-| `/setspawn` | Set world spawn to your position |
-| `/save` | Manually save the world |
-| `/reload` | Reload all plugins |
+Open ClassiCube → Options → Servers → Direct connect and enter your server address on port `25565`. To connect from another device on the same network, use your local IP instead of `localhost`.
 
 ---
 
 ## Configuration
 
-Edit `server.properties` after the first launch.
+Edit `server.properties` after the first launch. The defaults are sensible — the only things you'll likely want to change are `server-name`, `motd`, and `public`.
 
 ```properties
 server-name=A Minecraft Classic Server
@@ -114,28 +74,40 @@ max-connections-per-ip=3
 max-violations-before-ban=5
 ```
 
-| Option | Values | Description |
-|---|---|---|
-| `server-name` | string | Name shown in the server list |
-| `motd` | string | Message shown on connect |
-| `port` | number | Port to listen on |
-| `max-players` | number | Maximum simultaneous players |
-| `public` | `true` / `false` | List server on classicube.net |
-| `world-name` | string | World save file name |
-| `world-size-x/y/z` | number | World dimensions in blocks |
-| `world-generator` | `normal` / `flat` | World type on first creation |
-| `cpe-blocks` | `true` / `false` | Enable CPE CustomBlocks extension |
-| `save-interval` | seconds | Auto-save interval |
-| `connection-timeout` | seconds | Idle connection timeout |
-| `max-connections-per-ip` | number | Max simultaneous connections per IP |
-| `max-violations-before-ban` | number | Auto-ban threshold for rule violations |
+Set `public=true` to list your server on classicube.net. Use `world-generator=flat` for a flat world on first creation. `save-interval` is in seconds.
+
+---
+
+## Commands
+
+```
+/help               list all commands
+/players            show online players
+/spawn              teleport to spawn
+/pos                show your coordinates
+/me <text>          action message
+/msg <player>       private message
+/r <text>           reply to last message
+/plugins            list loaded plugins
+```
+
+**OP only**
+
+```
+/tp <player>        teleport to player
+/kick <player>      kick a player
+/ban / /unban       manage bans
+/op / /deop         manage operators
+/setspawn           set world spawn
+/save               force world save
+/reload             reload all plugins
+```
 
 ---
 
 ## Plugins
 
-Place `.py` plugin files in the `plugins/` folder.
-Plugins are loaded automatically on startup and can be reloaded with `/reload`.
+Drop a `.py` file in the `plugins/` folder. Plugins load on startup and can be reloaded live with `/reload`.
 
 ```python
 from plugin.plugin_base import Plugin
@@ -151,26 +123,24 @@ class MyPlugin(Plugin):
 
 ---
 
-## CPE Support
+## CPE
 
-PyCraft supports the **CustomBlocks** extension (level 1).
-ClassiCube clients automatically negotiate this on connect — no setup required.
-Enables 16 additional blocks (IDs 50–65): Sandstone, Snow, Ice, Cactus, Magma, Pillar, and more.
+PyCraft supports the **CustomBlocks** extension (level 1). ClassiCube clients negotiate this automatically — no setup needed. Adds 16 extra blocks (IDs 50–65): Sandstone, Snow, Ice, Cactus, Magma, Pillar, and more.
 
 ---
 
 ## Changelog
 
-### v0.2.6
-- Fixed `BufferUnderrun` crash on player movement — `PlayerTeleport (0x08)` body size corrected from 8 → 9 bytes
+**v0.2.6**
+— Fixed `BufferUnderrun` crash on player movement (`PlayerTeleport 0x08` body size corrected)
 
-### v0.2.5
-- Initial public release
+**v0.2.5**
+— Initial public release
 
 ---
 
 <div align="center">
 
-Made with Python · Classic protocol 7 · [github.com/servid124-ux/PyCraft](https://github.com/servid124-ux/PyCraft)
+[github.com/servid124-ux/PyCraft](https://github.com/servid124-ux/PyCraft) · Classic protocol 7 · Python
 
 </div>
