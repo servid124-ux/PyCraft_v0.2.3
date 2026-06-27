@@ -18,6 +18,8 @@
 
 </div>
 
+![PyCraft gameplay](https://github.com/user-attachments/assets/bac7ae6c-257e-413b-8940-941aeed3ee94)
+
 ---
 
 PyCraft is a Minecraft Classic server written entirely in Python, compatible with ClassiCube. It runs on Linux and Android via Termux with no external dependencies.
