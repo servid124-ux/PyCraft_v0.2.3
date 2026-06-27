@@ -31,7 +31,8 @@ PyCraft is a Minecraft Classic server written entirely in Python, compatible wit
 ```bash
 pkg install python unzip
 wget https://github.com/user-attachments/files/29407007/PyCraft_v0_2_7.zip
-unzip PyCraft_v0.2.7.zip -d PyCraft && cd PyCraft
+unzip PyCraft_v0_2_7.zip -d PyCraft
+cd PyCraft
 sh Start.sh
 ```
 
@@ -40,7 +41,8 @@ sh Start.sh
 ```bash
 sudo apt install python3 unzip wget
 wget https://github.com/user-attachments/files/29407007/PyCraft_v0_2_7.zip
-unzip PyCraft_v0.2.7.zip -d PyCraft && cd PyCraft
+unzip PyCraft_v0_2_7.zip -d PyCraft
+cd PyCraft
 sh Start.sh
 ```
 
